@@ -13,34 +13,15 @@ $(".saveBtn").on("click", function() {
 
 // compare currentTime with time block and style accordingly
 for (let i = 0; i < 9; i++) {
-    //debugger;
+    let kids = $(".row")[i].children[1];
     if ($(".row")[i].id < currentTime) {
-        console.log("grey")
+        kids.classList.add("past");
     } else if ($(".row")[i].id == currentTime) {
-        console.log("red")
+        kids.classList.add("present");
     } else {
-        console.log("green")
+        kids.classList.add("future");
     }
 }
-
-// for (let i = 9; i < 18; i++) {
-//     //debugger;
-//     if (document.getElementById(i).id < currentTime) {
-//         console.log("grey")
-//     } else if (document.getElementById(i).id == currentTime) {
-//         console.log("red")
-//     } else {
-//         console.log("green")
-//     }
-// }
-
-// if (currentTime.isAfter(#)) {
-//     //update display of description
-// } else if (currentTime === hour) {
-//     //update display
-// } else {
-//     //update display
-// }
 
 
 getTime();
