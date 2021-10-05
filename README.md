@@ -14,5 +14,6 @@ This is a simple daily planner application made during the University of Utahs c
 * CSS
 * jQuery
 * Moment.js
+* Bootstrap
 
 ## Screenshot of the Application
