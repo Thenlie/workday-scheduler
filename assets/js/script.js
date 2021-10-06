@@ -6,6 +6,17 @@ let getTime = function() {
     $("#currentDay").text(currentDate + ' ' + currentTime);
 };
 
+//load any tasks in localStorage on page load
+let loadItems = function() {
+    for (let i = 9; i < 18; i++) {
+        let item = localStorage.getItem(i); //item = value of key(i)
+        let target = ('p' + i); //target equals p element id
+        if (item !== null) { //ensure something is stored
+            document.getElementById(target).append(item); //if it is add it to the page
+        } else {}
+    }
+};
+
 //save button click listener
 $(".saveBtn").on("click", function() {
     let descriptionEl = $(this)
@@ -17,8 +28,6 @@ $(".saveBtn").on("click", function() {
         .prev()
         .parent()
         .attr("id");
-    console.log(descriptionEl)
-    console.log(descriptionId)
     localStorage.setItem(descriptionId, descriptionEl)
 });
 
@@ -55,8 +64,7 @@ $(".description").on("blur", "textarea", function() {
         .text(descriptionInput);
 
     $(this).replaceWith(descriptionText); //replace textarea with p element
-
-    console.log(descriptionText.text());
 });
 
+loadItems();
 getTime();
