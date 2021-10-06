@@ -8,7 +8,11 @@ let getTime = function() {
 
 //save button click listener
 $(".saveBtn").on("click", function() {
-    let descriptionEl = this.previousElementSibling;
+    let descriptionEl = $(this)
+        .prev()
+        .children()
+        .text()
+        .trim();
     console.log(descriptionEl)
 });
 
