@@ -13,7 +13,13 @@ $(".saveBtn").on("click", function() {
         .children()
         .text()
         .trim();
+    let descriptionId = $(this)
+        .prev()
+        .parent()
+        .attr("id");
     console.log(descriptionEl)
+    console.log(descriptionId)
+    localStorage.setItem(descriptionId, descriptionEl)
 });
 
 // compare currentTime with time block and style accordingly
