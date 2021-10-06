@@ -3,33 +3,8 @@ let currentTime = parseInt(moment().format("H"));
 
 //display current date at top of screen
 let getTime = function() {
-    $("#currentDay").text(currentDate + ' ' + currentTime);
+    $("#currentDay").text(currentDate);
 };
-
-//load any tasks in localStorage on page load
-let loadItems = function() {
-    for (let i = 9; i < 18; i++) {
-        let item = localStorage.getItem(i); //item = value of key(i)
-        let target = ('p' + i); //target equals p element id
-        if (item !== null) { //ensure something is stored
-            document.getElementById(target).append(item); //if it is add it to the page
-        } else {}
-    }
-};
-
-//save button click listener
-$(".saveBtn").on("click", function() {
-    let descriptionEl = $(this)
-        .prev()
-        .children()
-        .text()
-        .trim();
-    let descriptionId = $(this)
-        .prev()
-        .parent()
-        .attr("id");
-    localStorage.setItem(descriptionId, descriptionEl)
-});
 
 // compare currentTime with time block and style accordingly
 for (let i = 0; i < 9; i++) {
@@ -42,6 +17,32 @@ for (let i = 0; i < 9; i++) {
         kids.classList.add("future");
     }
 }
+
+
+//load items from localStorage on page refresh
+let loadItems = function() {
+    for (let i = 9; i < 18; i++) {
+        let item = localStorage.getItem(i); //item = value of key(i)
+        let target = ('p' + i); //target equals p element id
+        if (item !== null) { //ensure something is stored
+            $('#' + target).append(item); //if it is add it to the page
+        } else {}
+    }
+};
+
+//save button click listener
+$(".saveBtn").on("click", function() {
+    let descriptionEl = $(this) //text of time block
+        .prev()
+        .children()
+        .text()
+        .trim();
+    let descriptionId = $(this) //hour of time block
+        .prev()
+        .parent()
+        .attr("id");
+    localStorage.setItem(descriptionId, descriptionEl)
+});
 
 //click listenr for description text, this = HTML p element
 $(".description").on("click", "p", function() {
